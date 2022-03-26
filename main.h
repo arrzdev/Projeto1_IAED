@@ -17,8 +17,8 @@ typedef struct{
 } date;
 
 typedef struct{
-  int hour;
-  int minute;
+  int hours;
+  int minutes;
 } time;
 
 typedef struct{
@@ -43,21 +43,31 @@ Global structure
 
 typedef struct{
   int n_airports;
-  int n_fligths;
+  int n_flights;
   airport airports[MAX_AIRPORTS];
   flight flights[MAX_FLIGHTS];
   date date;
-} system_data;
+} database;
 
 /* prototypes */
 void input(char string[], char separator);
 
 
-int handle_command(system_data *system);
-void handle_add_airport_command(system_data *system);
-void handle_list_airports_command(system_data *system);
-void handle_add_list_fligth_command(system_data *system);
-int valid_date(system_data *system, date);
-int count_flights(system_data *system, char id[MAX_AIRPORT_ID_SIZE+1]);
+int handle_command(database *system);
+
+void handle_add_airport_command(database *system);
+void handle_list_airports_command(database *system);
+void handle_add_list_fligth_command(database *system);
+void handle_list_origin_command(database *db);
+void handle_list_destination_command(database *db);
+
+double date_time_to_days(date date, time time);
+int date_to_days(date date);
+int valid_date(date db_date, date new_date);
+int count_flights(database *system, char id[MAX_AIRPORT_ID_SIZE+1]);
+int found_airport_id(database *system, char id[MAX_AIRPORT_ID_SIZE+1]);
+void sort_flights(flight arr[], int size);
+flight get_destination_info(flight Flight);
+void handle_date_forward(database *db);
 
 #endif
