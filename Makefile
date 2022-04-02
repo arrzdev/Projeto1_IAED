@@ -1,2 +1,2 @@
 compile:
-	gcc -Wall -Wextra -Werror -ansi -pedantic -o proj1 *.c
+	gcc -Wall -Wextra -Werror -ansi -pedantic -o proj1 ./src/*.c
